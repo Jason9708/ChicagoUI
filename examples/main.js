@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import CaiUi from './../packages'
+import ChicagoUi from './../packages'
 
-Vue.use(CaiUi)
+Vue.use(ChicagoUi)
 Vue.config.productionTip = false
 
 new Vue({

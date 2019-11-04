@@ -1,6 +1,5 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div>
     <cai-button :label='label' @click='handleClick'></cai-button>
   </div>
 </template>

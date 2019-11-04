@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 # ChicagoUI
  Ui belong to myself
-=======
 # chicago-ui
 
 ## Project setup
@@ -26,4 +24,3 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
->>>>>>> init

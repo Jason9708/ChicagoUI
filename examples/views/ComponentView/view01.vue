@@ -1,15 +1,20 @@
 <template>
-  <div>
-    <cai-button :label='label' @click='handleClick'></cai-button>
+  <div style='display:flex;'>
+    <cai-button @click='handleClick'></cai-button>
+    <cai-button ref='countDown' type='primary' size='small' @click='handleClick'></cai-button>
+    <cai-button type='success' size='large' @click='handleClick'></cai-button>
+    <cai-button type='error' @click='handleClick' disabled='true'></cai-button>
+    <cai-button @click='handleClick' shape='round'></cai-button>
+    <cai-button @click='handleClick' shape='circle'></cai-button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'demo01',
   data(){
     return{
-      label:'hhh'
+      
     }
   },
   props: {
@@ -17,7 +22,8 @@ export default {
   },
   methods:{
     handleClick:function(){
-      console.log('hhh')
+      console.log('点击了按钮.....')
+      this.$refs.countDown.showCountDown()
     }
   }
 }

@@ -1,6 +1,12 @@
 <template>
-    <button class='cai-Button' :class="[ Type, Size,Shape ]"  @click='handleClike' :disabled='Disabled'>{{countDownLabel ? countDownLabel : label}}
-    </button>
+    <div>
+        <!--带边框背景-->
+        <button class='cai-Button' v-if='!isPlain' :class="[ Type, Size,Shape ]"  @click='handleClike' :disabled='disabled'>{{label}}
+        </button>
+        <!--纯文字-->
+        <button class='cai-Button-plain' v-if='isPlain' :class="[ Type ]"  @click='handleClike' :disabled='disabled'>{{label}}
+        </button>
+    </div>
 </template>
 
 <script>
@@ -13,38 +19,29 @@ export default {
         type:{}, // primary | success | error
         size:{}, // normal | small | large
         disabled:{ // 默认为false
+            type:Boolean,
             default:false
         },
-        shape:{}, // 形状 round | circle
+        shape:{}, // 形状 round | circle | simple
+        plain:{
+            type:Boolean,
+            default:false
+        }
 
     },
     data(){
         return{
-            countDown:false,
-            countDownLabel:false,
         }
     },
     computed:{
         Type:function(){
             if(this.type){
                 if(this.type === 'primary'){
-                    return 'cai-Button-primary'
+                    return this.plain ? 'cai-Button-plain-primary' : 'cai-Button-primary'
                 }else if(this.type === 'success'){
-                    return 'cai-Button-success'
+                    return this.plain ? 'cai-Button-plain-success' : 'cai-Button-success'
                 }else if(this.type === 'error'){
-                    return 'cai-Button-error'
-                }else{
-                    return ''
-                }
-            }
-            return ''
-        },
-        Size:function(){
-            if(this.size){
-                if(this.size === 'small'){
-                    return 'cai-Button-small'
-                }else if(this.size === 'large'){
-                    return 'cai-Button-large'
+                    return this.plain ? 'cai-Button-plain-error' : 'cai-Button-error'
                 }else{
                     return ''
                 }
@@ -52,38 +49,55 @@ export default {
             return ''
         },
         Disabled:function(){
-            return this.disabled || this.countDown ? true : false
+            if(this.disabled){
+                if(this.disabled === true){
+                    return true
+                }else{
+                    return false
+                }
+            }
+            return false
         },
-        Shape:function(){
-            if(this.shape){
-                if(this.shape === 'round'){
-                    return 'cai-Button-round'
-                }else if(this.shape === 'circle'){
-                    return 'cai-Button-circle'
+        Size:function(){
+            if(this.size){
+                if(this.size === 'small'){
+                    return this.plain ? '' :'cai-Button-small'
+                }else if(this.size === 'large'){
+                    return this.plain ? '' : 'cai-Button-large'
                 }else{
                     return ''
                 }
             }
             return ''
+        },
+        Shape:function(){
+            if(this.shape){
+                if(this.shape === 'round'){
+                    return this.plain ? '' : 'cai-Button-round'
+                }else if(this.shape === 'circle'){
+                    return this.plain ? '' : 'cai-Button-circle'
+                }else if(this.shape === 'simple'){
+                    return this.plain ? '' : 'cai-Button-simple'
+                }else{
+                    return ''
+                }
+            }
+            return ''
+        },
+        isPlain:function(){
+            if(this.plain){
+                if(this.plain === true){
+                    return true
+                }else{
+                    return false
+                }
+            }
+            return false
         }
     },
     methods:{
         handleClike:function(){
             this.$emit('click')
-        },
-        // 实现倒计时不可操作
-        showCountDown:function(){
-            this.countDown = true
-            this.countDownLabel = 5
-            var Interval = setInterval(()=>{
-                this.countDownLabel--
-                if(this.countDownLabel <= 0){
-                    clearInterval(Interval)
-                    this.countDown = false
-                    this.countDownLabel = false
-
-                }
-            },1000)
         }
     }
 }

@@ -13,12 +13,17 @@
     padding:5px 10px;
     background: #FFFFFF;
     color:#888888;
-    border-radius:2px;
     border:1px solid #E6E6E6;
     cursor:pointer;
     transition:.2s linear;
+    outline:none;
 }
 .cai-Button:hover{
+    color: #409eff;
+    border-color: #c6e2ff;
+    background: #ecf5ff;
+}
+.cai-Button:focus{
     color: #409eff;
     border-color: #c6e2ff;
     background: #ecf5ff;
@@ -27,7 +32,7 @@
 /** 禁用样式 **/
 .cai-Button[disabled]{
     color:#888888;
-    background: #E6E6E6;
+    background: #ecf0f1;
     border-color:#E6E6E6;
     cursor: not-allowed;
 }
@@ -49,29 +54,45 @@
     border-color: #6CD0E8;
     background: #6CD0E8;
 }
+.cai-Button-primary:focus{
+    color: #fff;
+    border-color: #6CD0E8;
+    background: #6CD0E8;
+}
 
 /** success样式 **/
 .cai-Button-success{
     color: #fff;
-    border-color: #31DF54;
-    background: #31DF54;
+    border-color: #20bf6b;
+    background: #20bf6b;
 }
 .cai-Button-success:hover{
     color: #fff;
-    border-color: #9EE86C;
-    background: #9EE86C;
+    border-color: #26de81;
+    background: #26de81;
 }
+.cai-Button-success:focus{
+    color: #fff;
+    border-color: #26de81;
+    background: #26de81;
+}
+
 
 /** error样式 **/
 .cai-Button-error{
     color: #fff;
-    border-color: #EF7321;
-    background: #EF7321;
+    border-color: #ff5e57;
+    background: #ff5e57;
 }
 .cai-Button-error:hover{
     color: #fff;
-    border-color: #F5A570;
-    background: #F5A570;
+    border-color: #e77f67;
+    background: #e77f67;
+}
+.cai-Button-error:focus{
+    color: #fff;
+    border-color: #e77f67;
+    background: #e77f67;
 }
 
 .cai-Button-small{
@@ -92,5 +113,68 @@
 .cai-Button-circle{
     width:auto;
     border-radius:50%;
+}
+
+
+// ------- 纯文字 ---------
+.cai-Button-plain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:12px;
+    font-weight: 500;
+    width:auto;
+    padding:5px 10px;
+    background: #FFFFFF;
+    color:#888888;
+    cursor:pointer;
+    border:0px;
+    transition:.2s linear;
+    outline:none;
+}
+.cai-Button-plain:hover{
+    color: #409eff;
+}
+.cai-Button-plain:focus{
+    color: #409eff;
+}
+/** 禁用样式 **/
+.cai-Button-plain[disabled]{
+    color:#888888;
+    cursor: not-allowed;
+}
+.cai-Button-plain[disabled]:hover{
+    color:#888888;
+    cursor: not-allowed;
+}
+/** primary样式 **/
+.cai-Button-plain-primary{
+    color: #4bcffa;
+}
+.cai-Button-plain-primary:hover{
+    color: #0fbcf9;
+}
+.cai-Button-plain-primary:focus{
+    color: #0fbcf9;
+}
+/** success样式 **/
+.cai-Button-plain-success{
+    color: #26de81;
+}
+.cai-Button-plain-success:hover{
+    color: #20bf6b;
+}
+.cai-Button-plain-success:focus{
+    color: #20bf6b;
+}
+/** error样式 **/
+.cai-Button-plain-error{
+    color: #e77f67;
+}
+.cai-Button-plain-error:hover{
+    color: #ff3f34;
+}
+.cai-Button-plain-error:focus{
+    color: #ff3f34;
 }
 

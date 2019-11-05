@@ -15,6 +15,7 @@ type: primary | success | error
 size：small | large
 disabled 禁用（可选） （默认false）
 shape 形状（可选） round | circle(circle建议与icon一起使用)
+plain 朴素纯文字按钮 可选 （默认false）同样具有 type: primary | success | error 但size shape均失效
 ```
 
 ## 打包方式

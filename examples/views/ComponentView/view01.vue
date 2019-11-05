@@ -1,11 +1,15 @@
 <template>
   <div style='display:flex;'>
     <cai-button @click='handleClick'></cai-button>
-    <cai-button ref='countDown' type='primary' size='small' @click='handleClick'></cai-button>
+    <cai-button type='primary' size='small' @click='handleClick'></cai-button>
     <cai-button type='success' size='large' @click='handleClick'></cai-button>
-    <cai-button type='error' @click='handleClick' disabled='true'></cai-button>
-    <cai-button @click='handleClick' shape='round'></cai-button>
+    <cai-button type='error' @click='handleClick'></cai-button>
+    <cai-button @click='handleClick' shape='round' disabled></cai-button>
     <cai-button @click='handleClick' shape='circle'></cai-button>
+    <cai-button type='primary' @click='handleClick' plain></cai-button>
+    <cai-button type='success' @click='handleClick' plain></cai-button>
+    <cai-button type='error' @click='handleClick' plain></cai-button>
+    <cai-button type='error' @click='handleClick' plain disabled></cai-button>
   </div>
 </template>
 
@@ -23,7 +27,6 @@ export default {
   methods:{
     handleClick:function(){
       console.log('点击了按钮.....')
-      this.$refs.countDown.showCountDown()
     }
   }
 }

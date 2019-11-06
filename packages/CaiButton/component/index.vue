@@ -1,10 +1,14 @@
 <template>
     <div>
         <!--带边框背景-->
-        <button class='cai-Button' v-if='!isPlain' :class="[ Type, Size,Shape ]"  @click='handleClike' :disabled='disabled'>{{label}}
+        <button class='cai-Button' v-if='!isPlain' :class="[ Type, Size,Shape ]"  @click='handleClike' :disabled='disabled'>
+            <i :class='icon' v-if='icon'></i>
+            <slot></slot>
         </button>
         <!--纯文字-->
-        <button class='cai-Button-plain' v-if='isPlain' :class="[ Type ]"  @click='handleClike' :disabled='disabled'>{{label}}
+        <button class='cai-Button-plain' v-if='isPlain' :class="[ Type ]"  @click='handleClike' :disabled='disabled'>
+            <i :class='icon' v-if='icon'></i>
+            <slot></slot>
         </button>
     </div>
 </template>
@@ -13,9 +17,6 @@
 export default {
     name:'CaiButton',
     props:{
-        label:{
-            default:'BUTTON'
-        },
         type:{}, // primary | success | error
         size:{}, // normal | small | large
         disabled:{ // 默认为false
@@ -23,6 +24,10 @@ export default {
             default:false
         },
         shape:{}, // 形状 round | circle | simple
+        icon: {
+            type: String,
+            default: ''
+        },
         plain:{
             type:Boolean,
             default:false
@@ -105,5 +110,6 @@ export default {
 
 <style lang="less" scoped>
 @import './index.less';
+@import '../../CaiIcon/component/index.less';
 
 </style>

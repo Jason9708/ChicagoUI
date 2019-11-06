@@ -1,0 +1,59 @@
+/**
+    警告样式
+**/
+
+/** 默认样式 **/
+.cai-Alert-box{
+    width:100%;
+    font-size:12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:8px 15px 8px 20px;
+    background: #EEEEEE;
+    border:1px solid #EEEEEE;
+    border-radius:3px;
+}
+.cai-Alert-left{
+    color:#000;
+}
+.cai-Alert-right{
+    font-size:12px;
+    margin-left:10px;
+    color:#888888;
+    cursor:pointer;
+}
+
+/** success样式 **/
+.cai-Alert-success{
+    background: #09F797;
+    border:1px solid #09F797;
+    .cai-Alert-left{
+        color:#07B56F;
+    }
+    .cai-Alert-right{
+        color:#07C679;
+    }
+}
+/** warning样式 **/
+.cai-Alert-warning{
+    background: #F9CDB0;
+    border:1px solid #F9CDB0;
+    .cai-Alert-left{
+        color:#F18741;
+    }
+    .cai-Alert-right{
+        color:#F49B60;
+    }
+}
+/** error样式 **/
+.cai-Alert-error{
+    background: #FBA28C;
+    border:1px solid #FBA28C;
+    .cai-Alert-left{
+        color:#F8532A;
+    }
+    .cai-Alert-right{
+        color:#F96D4B;
+    }
+}

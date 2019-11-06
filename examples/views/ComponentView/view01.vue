@@ -1,15 +1,72 @@
 <template>
-  <div style='display:flex;'>
-    <cai-button @click='handleClick'></cai-button>
-    <cai-button type='primary' size='small' @click='handleClick'></cai-button>
-    <cai-button type='success' size='large' @click='handleClick'></cai-button>
-    <cai-button type='error' @click='handleClick'></cai-button>
-    <cai-button @click='handleClick' shape='round' disabled></cai-button>
-    <cai-button @click='handleClick' shape='circle'></cai-button>
-    <cai-button type='primary' @click='handleClick' plain></cai-button>
-    <cai-button type='success' @click='handleClick' plain></cai-button>
-    <cai-button type='error' @click='handleClick' plain></cai-button>
-    <cai-button type='error' @click='handleClick' plain disabled></cai-button>
+  <div style='display:flex;flex-direction:column;align-items:center;padding:20px;'>
+    <div style='width:500px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
+      <cai-button @click='handleClick'>默认按钮</cai-button>
+      <cai-button type='primary' size='small' @click='handleClick'>主要按钮</cai-button>
+      <cai-button type='success' size='large' @click='handleClick'>成功按钮</cai-button>
+      <cai-button type='error' @click='handleClick'>错误按钮</cai-button>
+      <cai-button @click='handleClick' shape='round' disabled>圆角禁用按钮</cai-button>
+      <cai-button @click='handleClick' icon='cai-icon-laading' shape='circle'></cai-button>
+      <cai-button type='primary' icon='cai-icon-laading' @click='handleClick' plain>朴素主要按钮</cai-button>
+      <cai-button type='success' @click='handleClick' plain>朴素成功按钮</cai-button>
+      <cai-button type='error' @click='handleClick' plain>朴素错误按钮</cai-button>
+      <cai-button type='error' @click='handleClick' plain disabled>朴素禁用按钮</cai-button>
+    </div>
+
+    <div style='border:1px solid #DDDDDD;margin:30px 0px;width:100%;'></div>
+
+    <div style='width:300px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
+      <cai-icon name='up'></cai-icon>
+      <cai-icon name='left'></cai-icon>
+      <cai-icon name='down'></cai-icon>
+      <cai-icon name='right'></cai-icon>
+      <cai-icon name='add'></cai-icon>
+      <cai-icon name='close'></cai-icon>
+      <cai-icon name='night'></cai-icon>
+      <cai-icon name='sun'></cai-icon>
+      <cai-icon name='search'></cai-icon>
+      <cai-icon name='warning'></cai-icon>
+      <cai-icon name='refresh'></cai-icon>
+      <cai-icon name='smile'></cai-icon>
+      <cai-icon name='scan'></cai-icon>
+      <cai-icon name='return'></cai-icon>
+      <cai-icon name='loading'></cai-icon>
+      <cai-icon name='pic'></cai-icon>
+      <cai-icon name='namecard'></cai-icon>
+      <cai-icon name='favorites'></cai-icon>
+      <cai-icon name='email'></cai-icon>
+      <cai-icon name='editor'></cai-icon>
+      <cai-icon name='account'></cai-icon>
+      <cai-icon name='good'></cai-icon>
+      <cai-icon name='ellipsis'></cai-icon>
+      <cai-icon name='download'></cai-icon>
+      <cai-icon name='connections'></cai-icon>
+      <cai-icon name='bad'></cai-icon>
+      <cai-icon name='close'></cai-icon>
+      <cai-icon name='ashbin'></cai-icon>
+      <cai-icon name='clock'></cai-icon>
+      <cai-icon name='camera'></cai-icon>
+      <cai-icon name='add-account'></cai-icon>
+    </div>
+
+    <div style='border:1px solid #DDDDDD;margin:30px 0px;width:100%;'></div>
+
+    <div style='width:300px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
+      <cai-link>默认链接</cai-link>
+      <cai-link type='primary'>主要链接</cai-link>
+      <cai-link type='success'>成功链接</cai-link>
+      <cai-link type='danger'>危险链接</cai-link>
+      <cai-link href='http://www.baidu.com' underline>百度链接</cai-link>
+    </div>
+
+    <div style='border:1px solid #DDDDDD;margin:30px 0px;width:100%;'></div>
+
+    <div style='width:300px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
+      <cai-alert title='默认提示文案'></cai-alert>
+      <cai-alert title='默认提示文案' type='success' @handleClose='handleClose'></cai-alert>
+      <cai-alert title='默认提示文案' type='warning'></cai-alert>
+      <cai-alert title='默认提示文案' type='error'></cai-alert>
+    </div>
   </div>
 </template>
 
@@ -27,6 +84,9 @@ export default {
   methods:{
     handleClick:function(){
       console.log('点击了按钮.....')
+    },
+    handleClose:function(){
+      console.log('我被关闭了')
     }
   }
 }
@@ -34,5 +94,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-
+/deep/ .cai-Button{
+  margin:5px;
+}
+/deep/ .cai-Link{
+  margin:5px;
+}
+/deep/ .cai-Alert-box{
+    margin-bottom:10px;
+}
 </style>

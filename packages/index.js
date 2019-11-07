@@ -5,6 +5,7 @@ import CaiButton from './CaiButton'
 import CaiIcon from './CaiIcon'
 import CaiLink from './CaiLink'
 import CaiAlert from './CaiAlert'
+import message from './CaiMessage'
 
 const components = [
     CaiButton,
@@ -28,6 +29,8 @@ const install = (Vue) => {
     if (typeof window != 'undefined' && window.Vue) {
         install(window.Vue)
     }
+
+    Vue.prototype.$message = message;
 }
 
 export default {

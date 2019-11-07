@@ -1,10 +1,11 @@
 <template>
     <div v-if='showAlert' class='cai-Alert-box' :class="[ Type ]" >
         <div class='cai-Alert-left'>
+            <i class='cai-Alert-icon' :class="'cai-icon-' + name"></i>
             {{title}}
         </div>
         <div class='cai-Alert-right' @click='handleClose'>
-            X
+            <i class='cai-Alert-icon cai-icon-close'></i>
         </div>
     </div>
 </template>
@@ -25,6 +26,9 @@ export default {
         title:{
             type:String,
             default:''
+        },
+        name:{
+            type:String
         }
     },
     computed:{
@@ -50,5 +54,7 @@ export default {
 
 <style lang="less" scoped>
 @import './index.less';
+@import '../../CaiIcon/component/index.less';
+
 </style>
 

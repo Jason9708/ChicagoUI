@@ -2,15 +2,15 @@
   <div style='display:flex;flex-direction:column;align-items:center;padding:20px;'>
     <div style='width:500px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
       <cai-button @click='handleClick'>默认按钮</cai-button>
-      <cai-button type='primary' size='small' @click='handleClick'>主要按钮</cai-button>
-      <cai-button type='success' size='large' @click='handleClick'>成功按钮</cai-button>
-      <cai-button type='error' @click='handleClick'>错误按钮</cai-button>
-      <cai-button @click='handleClick' shape='round' disabled>圆角禁用按钮</cai-button>
-      <cai-button @click='handleClick' icon='cai-icon-laading' shape='circle'></cai-button>
-      <cai-button type='primary' icon='cai-icon-laading' @click='handleClick' plain>朴素主要按钮</cai-button>
-      <cai-button type='success' @click='handleClick' plain>朴素成功按钮</cai-button>
-      <cai-button type='error' @click='handleClick' plain>朴素错误按钮</cai-button>
-      <cai-button type='error' @click='handleClick' plain disabled>朴素禁用按钮</cai-button>
+      <cai-button type='primary' size='small' @click='handleClick2'>主要按钮</cai-button>
+      <cai-button type='success' size='large' @click='handleClick1'>成功按钮</cai-button>
+      <cai-button type='error' @click='handleClick3'>错误按钮</cai-button>
+      <cai-button  shape='round' disabled>圆角禁用按钮</cai-button>
+      <cai-button  icon='cai-icon-laading' shape='circle'></cai-button>
+      <cai-button type='primary' icon='cai-icon-laading'  plain>朴素主要按钮</cai-button>
+      <cai-button type='success'  plain>朴素成功按钮</cai-button>
+      <cai-button type='error'  plain>朴素错误按钮</cai-button>
+      <cai-button type='error'  plain disabled>朴素禁用按钮</cai-button>
     </div>
 
     <div style='border:1px solid #DDDDDD;margin:30px 0px;width:100%;'></div>
@@ -63,9 +63,13 @@
 
     <div style='width:300px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
       <cai-alert title='默认提示文案'></cai-alert>
-      <cai-alert title='默认提示文案' type='success' @handleClose='handleClose'></cai-alert>
+      <cai-alert title='默认提示文案' type='success'></cai-alert>
       <cai-alert title='默认提示文案' type='warning'></cai-alert>
       <cai-alert title='默认提示文案' type='error'></cai-alert>
+      <cai-alert name='smile-fill' title='带图标默认提示文案'></cai-alert>
+      <cai-alert name='success-fill' title='带图标成功提示文案' type='success' @handleClose='handleClose'></cai-alert>
+      <cai-alert name='warning-fill' title='带图标危险提示文案' type='warning'></cai-alert>
+      <cai-alert name='cry-fill' title='带图标错误提示文案' type='error'></cai-alert>
     </div>
   </div>
 </template>
@@ -82,7 +86,28 @@ export default {
     msg: String
   },
   methods:{
-    handleClick:function(){
+    handleClick1:function(){
+      this.$message({
+        content:'消息提示······',
+        icon:'cai-icon-success-fill',
+        type:'success'
+      })
+      console.log('点击了按钮.....')
+    },
+    handleClick2:function(){
+      this.$message({
+        content:'消息提示······',
+        icon:'cai-icon-warning-fill',
+        type:'warning'
+      })
+      console.log('点击了按钮.....')
+    },
+    handleClick3:function(){
+      this.$message({
+        content:'消息提示······',
+        icon:'cai-icon-reeor-fill',
+        type:'error'
+      })
       console.log('点击了按钮.....')
     },
     handleClose:function(){

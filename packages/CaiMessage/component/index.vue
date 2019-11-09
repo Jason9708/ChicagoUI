@@ -82,7 +82,8 @@ export default {
     background: #fff;
     color :#606266;
     border:1px solid #DCDFE6;
-    border-radius:5px;
+    border-left:5px solid #2f3640; 
+    border-radius:0px 5px 5px 0px;
     padding: 5px 10px;
     min-width: 240px;
     max-width:500px;
@@ -105,6 +106,7 @@ export default {
 .cai-Message-success{
     background: #66EE66;
     border:1px solid #66EE66;
+    border-left:5px solid #27ae60;
     box-shadow:3px 3px 5px #AEE7A0;
     color:#303133;
 }
@@ -112,6 +114,7 @@ export default {
 .cai-Message-warning{
     background: #F9CDB0;
     border:1px solid #F9CDB0;
+    border-left:5px solid #e74c3c;
     box-shadow:3px 3px 5px #FDE3BD;
     color:#303133;
 }
@@ -119,6 +122,7 @@ export default {
 .cai-Message-error{
     background: #FBA28C;
     border:1px solid #FBA28C;
+    border-left:5px solid #c0392b;
     box-shadow:3px 3px 5px #FACBC0;
     color:#303133;
 }

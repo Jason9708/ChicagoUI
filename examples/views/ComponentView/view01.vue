@@ -1,7 +1,7 @@
 <template>
   <div style='display:flex;flex-direction:column;align-items:center;padding:20px;'>
     <div style='width:500px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
-      <cai-button>默认按钮</cai-button>
+      <cai-button @click='handleClick'>默认按钮</cai-button>
       <cai-button type='primary' size='small' @click='handleClick2'>主要按钮</cai-button>
       <cai-button type='success' size='large' @click='handleClick1'>成功按钮</cai-button>
       <cai-button type='error' @click='handleClick3'>错误按钮</cai-button>
@@ -102,6 +102,13 @@ export default {
     msg: String
   },
   methods:{
+    handleClick:function(){
+      this.$message({
+        content:'消息提示······',
+        icon:'cai-icon-smile-fill'
+      })
+      console.log('点击了按钮.....')
+    },
     handleClick1:function(){
       this.$message({
         content:'消息提示······',
@@ -136,7 +143,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
 /deep/ .cai-Button{
   margin:5px;

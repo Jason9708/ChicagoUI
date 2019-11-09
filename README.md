@@ -23,7 +23,7 @@ plain 朴素纯文字按钮 可选 （默认false）同样具有 type: primary |
 
 ##### CaiIcon
 ```
-<cai-icon name='xxx'></cai-icon>、
+<cai-icon name='xxx'></cai-icon>
 
 name 图标名称
 ```
@@ -78,7 +78,7 @@ selectOption: 当前所选 （需与选项的value属性对应才有效）
 ## 打包方式
 > 以库模式打包  `vue-cli-service build --target lib --name lib`
 > demo: `vue-cli-service build --target lib --name chicagoUI --dest lib packages/index.js`
-> target 默认的构建应用，lib模式（没有vue）
+> target 默认的构建应用，lib模式
 ## 发布到npm
 > lib中建立package.json
 

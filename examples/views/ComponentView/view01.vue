@@ -1,7 +1,7 @@
 <template>
   <div style='display:flex;flex-direction:column;align-items:center;padding:20px;'>
     <div style='width:500px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
-      <cai-button @click='handleClick'>默认按钮</cai-button>
+      <cai-button>默认按钮</cai-button>
       <cai-button type='primary' size='small' @click='handleClick2'>主要按钮</cai-button>
       <cai-button type='success' size='large' @click='handleClick1'>成功按钮</cai-button>
       <cai-button type='error' @click='handleClick3'>错误按钮</cai-button>
@@ -71,6 +71,12 @@
       <cai-alert name='warning-fill' title='带图标危险提示文案' type='warning'></cai-alert>
       <cai-alert name='cry-fill' title='带图标错误提示文案' type='error'></cai-alert>
     </div>
+
+    <div style='border:1px solid #DDDDDD;margin:30px 0px;width:100%;'></div>
+
+    <div style='width:310px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
+        <cai-radio :options="testArray" :selectOption="testselect" @radioChange="setRadioValue"></cai-radio>
+    </div>
   </div>
 </template>
 
@@ -79,7 +85,17 @@ export default {
   name: 'demo01',
   data(){
     return{
-      
+      testArray:[{
+          name:"简体中文",
+          value:1
+      },{
+          name:"繁體中文",
+          value:2
+      },{
+          name:"English",
+          value:3
+      }],
+      testselect:1,
     }
   },
   props: {
@@ -112,6 +128,9 @@ export default {
     },
     handleClose:function(){
       console.log('我被关闭了')
+    },
+    setRadioValue:function (value) {
+      console.log("setRadioValue",value)
     }
   }
 }
@@ -127,5 +146,12 @@ export default {
 }
 /deep/ .cai-Alert-box{
     margin-bottom:10px;
+}
+/deep/ .cai-Radio-item.checked[data-v-7bc6e605] {
+    background:#e74c3c;
+    border:1px solid #e74c3c;
+}
+/deep/ .cai-Radio[data-v-7bc6e605]::after{
+    background-color: #e74c3c;
 }
 </style>

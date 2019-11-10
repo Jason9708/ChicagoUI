@@ -77,6 +77,15 @@
     <div style='width:310px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
         <cai-radio :options="testArray" :selectOption="testselect" @radioChange="setRadioValue"></cai-radio>
     </div>
+
+    <div style='border:1px solid #DDDDDD;margin:30px 0px;width:100%;'></div>
+
+    <div style='width:310px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
+        <cai-checkbox title="多选框列表标题"
+               v-model="value"
+               @getData="getInfo"
+               :options="options"></cai-checkbox>
+    </div>
   </div>
 </template>
 
@@ -85,6 +94,7 @@ export default {
   name: 'demo01',
   data(){
     return{
+      // radio
       testArray:[{
           name:"简体中文",
           value:1
@@ -96,6 +106,26 @@ export default {
           value:3
       }],
       testselect:1,
+
+      // checkbox
+      options: [
+        {
+          label:'first option',
+          value:1,
+          checked: true,
+          disabled:true
+        },
+        {
+          label:'second option',
+          value:2
+        },
+        {
+          label:'third option',
+          value:3
+        }
+      ],
+      value: '',
+
     }
   },
   props: {
@@ -138,6 +168,10 @@ export default {
     },
     setRadioValue:function (value) {
       console.log("setRadioValue",value)
+    },
+    getInfo:function(arr){
+      this.value = arr;
+      console.log(arr)
     }
   }
 }
@@ -153,11 +187,5 @@ export default {
 /deep/ .cai-Alert-box{
     margin-bottom:10px;
 }
-/deep/ .cai-Radio-item.checked[data-v-7bc6e605] {
-    background:#e74c3c;
-    border:1px solid #e74c3c;
-}
-/deep/ .cai-Radio[data-v-7bc6e605]::after{
-    background-color: #e74c3c;
-}
+
 </style>

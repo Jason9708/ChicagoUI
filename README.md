@@ -82,6 +82,19 @@ selectOption: 当前所选 （需与选项的value属性对应才有效）
 direction:  (可选值)vertical 垂直分割线 其他值（或不传）均为水平分割线
 content-position: left | right | center 文本内容位置
 ```
+##### Drawer
+```
+<cai-drawer title='Hello,Drawer' content='Hello' width='400' :visible.sync='visibleDrawer'>
+
+title 标题 String
+content 内容 String
+width 宽度 String
+visible 控制显示 Boolean
+
+@handleClose 弹窗关闭回调 
+```
+
+
 
 ## 打包方式
 > 以库模式打包  `vue-cli-service build --target lib --name lib`

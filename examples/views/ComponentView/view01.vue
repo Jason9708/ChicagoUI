@@ -1,6 +1,13 @@
 <template>
   <div style='display:flex;flex-direction:column;align-items:center;padding:20px;'>
 
+    <!-- Drawer -->
+    <cai-drawer title='Hello,Drawer' content='Hello' width='400' :visible.sync='visibleDrawer'>
+      <div slot='content' style='display:flex;justify-content:center;width:100%;'>
+        I am Content
+      </div>
+    </cai-drawer>
+
     <cai-divider>Button</cai-divider>
 
     <div style='width:500px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
@@ -9,7 +16,7 @@
       <cai-button type='success' size='large' @click='handleClick1'>成功按钮</cai-button>
       <cai-button type='error' @click='handleClick3'>错误按钮</cai-button>
       <cai-button  shape='round' disabled>圆角禁用按钮</cai-button>
-      <cai-button  icon='cai-icon-laading' shape='circle'></cai-button>
+      <cai-button  icon='cai-icon-laading' shape='circle' @click='openDrawer'></cai-button>
       <cai-button type='primary' icon='cai-icon-laading'  plain>朴素主要按钮</cai-button>
       <cai-button type='success'  plain>朴素成功按钮</cai-button>
       <cai-button type='error'  plain>朴素错误按钮</cai-button>
@@ -129,12 +136,17 @@ export default {
       ],
       value: '',
 
+      // Drawer
+      visibleDrawer:false
     }
   },
   props: {
     msg: String
   },
   methods:{
+    openDrawer:function(){
+      this.visibleDrawer = true
+    },
     handleClick:function(){
       this.$message({
         content:'消息提示······',

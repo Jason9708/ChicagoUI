@@ -125,8 +125,8 @@ export default {
 }
 
 .checkboxInput:checked + .checkSelect {
-  background-color: #26a2ff;
-  border-color: #26a2ff;
+  background-color: #74b9ff;
+  border-color: #74b9ff;
 }
 
 .checkboxInput:checked + .checkSelect::after {
@@ -135,12 +135,6 @@ export default {
   transform: rotate(45deg) scale(1);
 }
 
-.checkboxInput:checked + .checkboxLink{
-    border:2px solid red;
-}
-.checkboxInput:checked + .checkboxLink::after{
-    border:2px solid red;
-}
 
 .checkSelect::after {
   border: 2px solid transparent;

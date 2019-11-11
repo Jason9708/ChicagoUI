@@ -75,6 +75,14 @@ selectOption: 当前所选 （需与选项的value属性对应才有效）
 @radioChange: 改变当前所选时的回调（接收一个参数 - 当前所选的value值）
 ```
 
+##### Divider
+```
+<cai-divider>XXXX</cai-divider>
+
+direction:  (可选值)vertical 垂直分割线 其他值（或不传）均为水平分割线
+content-position: left | right | center 文本内容位置
+```
+
 ## 打包方式
 > 以库模式打包  `vue-cli-service build --target lib --name lib`
 > demo: `vue-cli-service build --target lib --name chicagoUI --dest lib packages/index.js`

@@ -8,6 +8,7 @@ import CaiAlert from './CaiAlert'
 import message from './CaiMessage'
 import CaiRadio from './CaiRadio'
 import CaiCheckbox from './CaiCheckbox'
+import CaiDivider from './CaiDivider'
 
 const components = [
     CaiButton,
@@ -15,7 +16,8 @@ const components = [
     CaiLink,
     CaiAlert,
     CaiRadio,
-    CaiCheckbox
+    CaiCheckbox,
+    CaiDivider
 ]
 
 // 定义install方法，接收一个vue参数

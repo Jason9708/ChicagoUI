@@ -1,5 +1,8 @@
 <template>
   <div style='display:flex;flex-direction:column;align-items:center;padding:20px;'>
+
+    <cai-divider>Button</cai-divider>
+
     <div style='width:500px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
       <cai-button @click='handleClick'>默认按钮</cai-button>
       <cai-button type='primary' size='small' @click='handleClick2'>主要按钮</cai-button>
@@ -13,7 +16,7 @@
       <cai-button type='error'  plain disabled>朴素禁用按钮</cai-button>
     </div>
 
-    <div style='border:1px solid #DDDDDD;margin:30px 0px;width:100%;'></div>
+    <cai-divider>Icon</cai-divider>
 
     <div style='width:300px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
       <cai-icon name='up'></cai-icon>
@@ -49,7 +52,7 @@
       <cai-icon name='add-account'></cai-icon>
     </div>
 
-    <div style='border:1px solid #DDDDDD;margin:30px 0px;width:100%;'></div>
+    <cai-divider>Link</cai-divider>
 
     <div style='width:300px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
       <cai-link>默认链接</cai-link>
@@ -59,7 +62,7 @@
       <cai-link href='http://www.baidu.com' underline>百度链接</cai-link>
     </div>
 
-    <div style='border:1px solid #DDDDDD;margin:30px 0px;width:100%;'></div>
+    <cai-divider>Alert</cai-divider>
 
     <div style='width:300px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
       <cai-alert title='默认提示文案'></cai-alert>
@@ -72,13 +75,13 @@
       <cai-alert name='cry-fill' title='带图标错误提示文案' type='error'></cai-alert>
     </div>
 
-    <div style='border:1px solid #DDDDDD;margin:30px 0px;width:100%;'></div>
+    <cai-divider>Radio</cai-divider>
 
     <div style='width:310px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
         <cai-radio :options="testArray" :selectOption="testselect" @radioChange="setRadioValue"></cai-radio>
     </div>
 
-    <div style='border:1px solid #DDDDDD;margin:30px 0px;width:100%;'></div>
+    <cai-divider>Checkbox</cai-divider>
 
     <div style='width:310px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
         <cai-checkbox title="多选框列表标题"

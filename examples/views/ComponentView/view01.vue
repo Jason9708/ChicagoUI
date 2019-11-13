@@ -1,6 +1,6 @@
 <template>
   <div style='display:flex;flex-direction:column;align-items:center;padding:20px;'>
-
+    <div ref='box'></div>
     <!-- Drawer -->
     <cai-drawer title='Hello,Drawer' content='Hello' width='400' :visible.sync='visibleDrawer'>
       <div slot='content' style='display:flex;justify-content:center;width:100%;'>
@@ -17,7 +17,7 @@
       <cai-button type='error' @click='handleClick3'>错误按钮</cai-button>
       <cai-button  shape='round' disabled>圆角禁用按钮</cai-button>
       <cai-button  icon='cai-icon-laading' shape='circle' @click='openDrawer'></cai-button>
-      <cai-button type='primary' icon='cai-icon-laading'  plain>朴素主要按钮</cai-button>
+      <cai-button type='primary' icon='cai-icon-laading' @click='openLoading' plain>朴素主要按钮</cai-button>
       <cai-button type='success'  plain>朴素成功按钮</cai-button>
       <cai-button type='error'  plain>朴素错误按钮</cai-button>
       <cai-button type='error'  plain disabled>朴素禁用按钮</cai-button>
@@ -146,6 +146,15 @@ export default {
   methods:{
     openDrawer:function(){
       this.visibleDrawer = true
+    },
+    openLoading:function(){
+      this.$caiLoading.show({
+        text:'Loading',
+        el:this.$refs.box
+      })
+      setTimeout(() => {
+        this.$caiLoading.hide()
+      },3000)
     },
     handleClick:function(){
       this.$message({

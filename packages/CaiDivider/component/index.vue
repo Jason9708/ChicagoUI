@@ -31,7 +31,6 @@ export default {
     mounted(){
         if(this.direction === 'vertical'){
             this.showVertical = true
-            console.log(this.showVertical)
         }else{
             this.showVertical = false
         }

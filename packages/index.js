@@ -10,6 +10,7 @@ import CaiRadio from './CaiRadio'
 import CaiCheckbox from './CaiCheckbox'
 import CaiDivider from './CaiDivider'
 import CaiDrawer from './CaiDrawer'
+import CaiLoading from './CaiLoading'
 
 const components = [
     CaiButton,
@@ -19,7 +20,8 @@ const components = [
     CaiRadio,
     CaiCheckbox,
     CaiDivider,
-    CaiDrawer
+    CaiDrawer,
+    CaiLoading
 ]
 
 // 定义install方法，接收一个vue参数

@@ -93,6 +93,18 @@ visible 控制显示 Boolean
 
 @handleClose 弹窗关闭回调 
 ```
+##### Loading
+```
+调用方式
+//显示
+this.$caiLoading.show({
+    text:'...',     #(可选)
+    el:this.$refs.xxx       #(必选)需要建立一个元素来存放caiLoading组件
+})
+
+// 隐藏
+this.$caiLoading.hide()
+```
 
 
 
@@ -101,5 +113,15 @@ visible 控制显示 Boolean
 > demo: `vue-cli-service build --target lib --name chicagoUI --dest lib packages/index.js`
 > target 默认的构建应用，lib模式
 ## 发布到npm
-> lib中建立package.json
+```
+# 在lib下创建package.json
+{
+    "name": "xxx-ui",
+    "version": "0.1.0",
+    "main": "xxx.umd.js"   // xxx根据实际目录下的
+}
+
+然后执行npm publish（在lib下执行cmd），可能需要先登录npm
+```
+
 

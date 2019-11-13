@@ -31,7 +31,6 @@ export default {
     methods:{
         radioChange:function ($event,option) {
             this.selectRadio = $event.target.value
-            console.log($event.target.value);
             this.$emit('radioChange',$event.target.value);
         }
     }   

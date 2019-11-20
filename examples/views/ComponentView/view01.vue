@@ -96,6 +96,12 @@
                @getData="getInfo"
                :options="options"></cai-checkbox>
     </div>
+
+    <cai-divider>Input</cai-divider>
+
+    <div style='width:310px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
+        <cai-input v-model='inputValue' icon='cai-icon-laading' maxlength='20' round placeholder='I am placeholder' size='small'></cai-input>
+    </div>
   </div>
 </template>
 
@@ -137,7 +143,10 @@ export default {
       value: '',
 
       // Drawer
-      visibleDrawer:false
+      visibleDrawer:false,
+
+      // input
+      inputValue:''
     }
   },
   props: {

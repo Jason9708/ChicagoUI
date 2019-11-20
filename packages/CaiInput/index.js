@@ -4,7 +4,7 @@
 import CaiInput from './component/index.vue'
 
 // 定义install方法
-CaiButton.install = Vue => {
+CaiInput.install = Vue => {
     // 定义组件
     Vue.component(CaiInput.name, CaiInput)
 }

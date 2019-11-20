@@ -1,0 +1,52 @@
+/**
+    输入框样式
+**/ 
+
+/** 基础样式 **/
+.cai-input{
+    display:flex;
+    align-items: center;
+    padding:10px 10px;
+    border:1px solid #d1d8e0;
+    width:200px;
+    transition:all .5s ease;
+}
+.cai-input:hover{
+    border:1px solid #07C679;
+    color:#07C679;
+}
+
+.cai-input-inner{
+    border:0px;
+    background: transparent;
+    color:#000;
+    outline: none; // 去除选中时样式
+    font-size:12px;
+    width: 80%;
+    flex:1;
+}
+
+/** disabled **/
+.cai-input-disabled{
+    background:#f1f2f6;
+    opacity: .7;
+    cursor: not-allowed;
+}
+.cai-input-inner:disabled{
+    cursor: not-allowed;
+}
+
+/** round **/
+.cai-input-round{
+    border-radius:5px;
+}
+
+/** size **/
+.cai-input-mini{
+    padding:5px 10px;
+    width:100px;
+}
+.cai-input-small{
+    padding:8px 10px;
+    width:150px;
+}

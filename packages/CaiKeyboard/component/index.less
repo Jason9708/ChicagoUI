@@ -1,0 +1,118 @@
+.keyboard {
+	width: 550px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	user-select: none;
+
+	li {
+        font-size:12px;
+		float: left;
+		margin: 0 5px 5px 0;
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		background: #fff;
+		border: 1px solid #e5e5e5;
+        border-radius: 5px;
+        transition: all .1s linear;
+
+		&:hover {
+            position: relative;
+            color:#fff;
+            background:#505054 ;
+			border-color: #505054;
+			cursor: pointer;
+		}
+		&:active {
+            top:1px;
+            left:1px;
+		}
+	}
+
+	.tab, .delete {
+		width: 60px;
+    }
+    .tab {
+        background: #718093;
+        border-color:#718093;
+        color:#fff;
+        transition: all .1s linear;
+
+        &:hover{
+            background:#2f3640;
+            border-color:#2f3640;
+        }
+    }
+    .delete {
+        background: #ff7675;
+        border-color:#ff7675;
+        color:#fff;
+        transition: all .1s linear;
+
+        &:hover{
+            background:#d63031;
+            border-color:#d63031;
+        }
+    }
+	.capslock {
+        width: 70px;
+        color:#fff;
+        background: #ffbe76;
+        border-color: #ffbe76;
+        transition: all .1s linear;
+        
+        &:hover {
+            background: #f0932b;
+            border-color: #f0932b;
+        }
+	}
+	.enter {
+        width: 57px;
+        color:#fff;
+        background: #54a0ff;
+        border-color: #54a0ff;
+
+        &:hover {
+            background: #2e86de;
+            border-color: #2e86de;
+        }
+	}
+	.shift {
+        width: 82px;
+        color:#fff;
+        background: #1dd1a1;
+        border-color: #1dd1a1;
+        transition: all .1s linear;
+
+        &:hover {
+            background: #10ac84;
+            border-color: #10ac84;
+        }
+	}
+	.space {
+		clear: left;
+        width: 540px;
+        background: #dfe6e9;
+        border-color: #dfe6e9;
+	}
+	.shifted {
+		position: relative;
+		top: 1px;
+		left: 1px;
+		color:#fff;
+        background: #10ac84;
+		border-color: #10ac84;
+        cursor: pointer;
+	}
+	.capsed {
+		position: relative;
+		top: 1px;
+        left: 1px;
+        color:#fff;
+        background: #f0932b;
+		border-color: #f0932b;
+		cursor: pointer;
+	}
+}

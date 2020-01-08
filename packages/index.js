@@ -11,6 +11,7 @@ import CaiCheckbox from './CaiCheckbox'
 import CaiDivider from './CaiDivider'
 import CaiDrawer from './CaiDrawer'
 import CaiLoading from './CaiLoading'
+import CaiInput from './CaiInput'
 import CaiKeyboard from './CaiKeyboard'
 import CaiCalendar from './CaiCalendar'
 
@@ -24,8 +25,9 @@ const components = [
     CaiDivider,
     CaiDrawer,
     CaiLoading,
-    CaiKeyboard,
-    CaiCalendar
+    CaiCalendar,
+    CaiInput,
+    CaiKeyboard
 ]
 
 // 定义install方法，接收一个vue参数

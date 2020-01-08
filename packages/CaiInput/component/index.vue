@@ -1,6 +1,6 @@
 <template>
     <div class='cai-input' :class='[ Disabled, Round, Size,Round]'>
-        <input class='cai-input-inner' v-model='value' :disabled='Disabled' :minlength='minlength' :maxlength='maxlength' />
+        <input class='cai-input-inner' :value='value' :disabled='disabled' :minlength='minlength' :maxlength='maxlength' :placeholder='placeholder' @input="$emit('input', $event.target.value)" />
         <i :class='icon' v-if='icon'></i>
     </div>
 </template>
@@ -9,6 +9,7 @@
 export default {
     name:'CaiInput',
     data(){
+        return{}
     },
     props:{
         value:{
@@ -26,17 +27,17 @@ export default {
             type:Boolean,
             default:false
         },
-        size:{  // 输入框大小 mini | small | normal 
-            type:Boolean,
+        size:{  // 输入框大小 mini | small
+            type:String,
             default:'normal'
         },
         minlength:{
-            type:Number,
-            default:0
+            type:String,
+            default:'0'
         },
         maxlength:{  // 最大长度 默认40
-            type:Number,
-            default:40
+            type:String,
+            default:'40'
         },
         placeholder:{
             type:String,
@@ -47,18 +48,36 @@ export default {
         Disabled:function(){
             if(this.disabled){
                 if(this.disabled === true){
-                    return true
+                    return 'cai-input-disabled'
                 }else{
-                    return false
+                    return ''
                 }
             }
-            return false
+            return ''
+        },
+        Round:function(){
+            if(this.round){
+                return 'cai-input-round'
+            }
+            return ''
+        },
+        Size:function(){
+            if(this.size){
+                if(this.size === 'mini'){
+                    return 'cai-input-mini'
+                }else if(this.size === 'small'){
+                    return 'cai-input-small'
+                }else{
+                    return ''
+                }
+            }
+            return ''
         },
     }
 }
 </script>
 
-<style>
+<style lang='less' scoped>
 @import './index.less';
 @import '../../CaiIcon/component/index.less';
 </style>

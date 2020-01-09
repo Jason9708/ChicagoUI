@@ -8,14 +8,30 @@
         </div>
         <transition name='calendar'>
             <div class='cai-calendar-container' v-if='showCalendar'>
+                <div class='container-header'>
+                    <span class='container-header-date'>
+                        {{choosenMonthDec}}
+                    </span>
+                    <i class='cai-icon-up' @click='handlePrevMonth'></i>
+                    <i class='cai-icon-down' @click='handleNextMonth'></i>
+                    <span class='container-header-today' @click='handleToday'>今天</span>
+                </div>
                 <div class="calendar-week">
                     <div v-for="(item, index) in calendarTitleArr" :key="index" class="week-item">{{item}}</div>
                 </div>
-                <div class="calendar-week" @click='chooseDate'>
-                    <div v-for="(item, index) in visibleCalendar" :key="index" class="week-item date-item">
+                <div class="calendar-week">
+                    <div v-for="(item, index) in calendarList" :key="index" class="week-item date-item" :class='[{today:isCurrentDay(item.date)}]' @click='chooseDate(item)'>
                         <span>{{item.day}}</span>
                     </div>
                 </div>
+            </div>
+        </transition>
+        <!-- 自定义弹窗 -->
+        <transition name='calendar-dialog'>
+            <div class='cai-calendar-dialog' v-if='showCalendarDialog'>
+                <i class='cai-icon-close' @click='showCalendarDialog = false'></i>
+                <slot name="content">
+                </slot>
             </div>
         </transition>
     </div>
@@ -43,39 +59,12 @@ export default {
                 'SAT',
                 'SUN '
             ],
-            calendarList: [],
+            calendarList: [], // 日历数组
+            choosenMonthDec:'', // 日历容器头部的可选月份描述
+            choosenMonth:'', // 日历容器头部的可选月份
             interval:'', // 存储定时器
             showCalendar:false, // 是否显式完整日历
-        }
-    },
-    computed:{
-        visibleCalendar(){
-            let calendatArr = [];
-
-            let {year, month, day} = utils.getNewDate(utils.getDate(this.currentTime.year, this.currentTime.month, 1));
-            
-            let currentFirstDay = utils.getDate(year, month, 1);
-
-            // 获取当前月第一天星期几
-            let weekDay = currentFirstDay.getDay();
-            let startTime = currentFirstDay - (weekDay - 1) * 24 * 60 * 60 * 1000;
-
-            let monthDayNum;
-            if (weekDay == 5 || weekDay == 6){
-                monthDayNum = 42
-            }else {
-                monthDayNum = 35
-            };
-            for (let i = 0; i < monthDayNum; i++) {
-                calendatArr.push({
-                    date: new Date(startTime + i * 24 * 60 * 60 * 1000),
-                    year: year,
-                    month: month + 1,
-                    day: new Date(startTime + i * 24 * 60 * 60 * 1000).getDate(),
-                    clickDay: false,
-                })
-            };
-            return calendatArr
+            showCalendarDialog:false, // 是否显示自定义弹窗
         }
     },
     mounted(){
@@ -91,24 +80,24 @@ export default {
         // 拖拽
         drag(){
             var that = this
-            var drag = document.getElementById('cai-calendar-wrapper');
+            var drag = document.getElementById('cai-calendar-wrapper')
             // //点击某物体时，用drag对象即可，move和up是全局区域，
             // 也就是整个文档通用，应该使用document对象而不是drag对象(否则，采用drag对象时物体只能往右方或下方移动)  
             drag.onmousedown = function(event){
-                var event = event || window.event;  //兼容IE浏览器
+                var event = event || window.event  //兼容IE浏览器
                 // 鼠标点击物体那一刻相对于物体左侧边框的距离=点击时的位置相对于浏览器最左边的距离-物体左边框相对于浏览器最左边的距离
-                var diffX = event.clientX - drag.offsetLeft;
-                var diffY = event.clientY - drag.offsetTop;
+                var diffX = event.clientX - drag.offsetLeft
+                var diffY = event.clientY - drag.offsetTop
                 var startX = event.clientX
                 var startY = event.clientY
                 if(typeof drag.setCapture !== 'undefined'){
-                        drag.setCapture(); 
+                        drag.setCapture() 
                 }
                 // 鼠标移动，修改定位
                 document.onmousemove = function(event){
-                    var event = event || window.event;
-                    var moveX = event.clientX - diffX;
-                    var moveY = event.clientY - diffY;
+                    var event = event || window.event
+                    var moveX = event.clientX - diffX
+                    var moveY = event.clientY - diffY
                     if(moveX < 0){
                         moveX = 0
                     }else if(moveX > window.innerWidth - drag.offsetWidth){
@@ -120,7 +109,7 @@ export default {
                     }else if(moveY > window.innerHeight - drag.offsetHeight){
                         moveY =  window.innerHeight - drag.offsetHeight
                     }
-                    drag.style.left = moveX + 'px';
+                    drag.style.left = moveX + 'px'
                     drag.style.top = moveY + 'px'
                 }
                 document.onmouseup = function(event){
@@ -133,22 +122,90 @@ export default {
                         that.turnCalendar()
                     }
                     console.log(this)   // #document
-                    this.onmousemove = null;
-                    this.onmouseup = null;
+                    this.onmousemove = null
+                    this.onmouseup = null
                     //修复低版本ie bug  
                     if(typeof drag.releaseCapture!='undefined'){  
-                        drag.releaseCapture();  
+                        drag.releaseCapture()  
                     } 
                 }
             }
         },
         // 切换完整日历
         turnCalendar(){
+            this.visibleCalendar(this.currentTime.year,this.currentTime.month)
             this.showCalendar = !this.showCalendar
+            this.showCalendarDialog = false
         },
-        // 选择日期
-        chooseDate(){
-            // toDo
+        // 是否是今天 
+        isCurrentDay (date) {
+            let {year: currentYear, month: currentMonth, day: currentDay} = utils.getNewDate(new Date())
+            let {year, month, day} = utils.getNewDate(date)
+            return currentYear == year && currentMonth == month && currentDay == day
+        },
+        // 点击上一个月
+        handlePrevMonth () {
+            let prevMonth = utils.getDate(this.choosenMonth.year,this.choosenMonth.month,1)
+            prevMonth.setMonth(prevMonth.getMonth() - 1)
+            this.choosenMonth.year = utils.getNewDate(prevMonth).year
+            this.choosenMonth.month = utils.getNewDate(prevMonth).month
+            this.visibleCalendar(this.choosenMonth.year,this.choosenMonth.month)
+            this.$emit('handlePrevMonth',this.choosenMonth.year,this.choosenMonth.month) // 传给父组件，上个年和月份作为传递数据
+        },
+        // 点击下一个月
+        handleNextMonth () {
+            let nextMonth = utils.getDate(this.choosenMonth.year,this.choosenMonth.month,1)
+            nextMonth.setMonth(nextMonth.getMonth() + 1)
+            this.choosenMonth.year = utils.getNewDate(nextMonth).year
+            this.choosenMonth.month = utils.getNewDate(nextMonth).month
+            this.visibleCalendar(this.choosenMonth.year,this.choosenMonth.month)
+            this.$emit('handlePrevMonth',this.choosenMonth.year,this.choosenMonth.month) // 传给父组件，上个年和月份作为传递数据
+        },
+        // 点击回到今天
+        handleToday () {
+            this.choosenMonth.year = utils.getNewDate(new Date()).year
+            this.choosenMonth.month = utils.getNewDate(new Date()).month
+            this.visibleCalendar(this.choosenMonth.year,this.choosenMonth.month)
+            this.$emit('handleToday',this.choosenMonth.year,this.choosenMonth.month) // 传给父组件，上个年和月份作为传递数据
+        },
+        // 点击日期
+        chooseDate(item){
+            this.showCalendarDialog = true
+            this.$emit('handleClickDay', item);
+        },
+        // 加载日历
+        visibleCalendar(YEAR,MONTH){
+            let calendatArr = []
+
+            let {year, month, day} = utils.getNewDate(utils.getDate(YEAR, MONTH, 1))
+            
+            let currentFirstDay = utils.getDate(year, month, 1)
+
+            // 获取当前月第一天星期几
+            let weekDay = currentFirstDay.getDay()
+            let startTime = currentFirstDay - (weekDay - 1) * 24 * 60 * 60 * 1000
+
+            let monthDayNum
+            if (weekDay == 5 || weekDay == 6){
+                monthDayNum = 42
+            }else {
+                monthDayNum = 35
+            }
+            for (let i = 0; i < monthDayNum; i++) {
+                calendatArr.push({
+                    date: new Date(startTime + i * 24 * 60 * 60 * 1000),
+                    year: year,
+                    month: month + 1,
+                    day: new Date(startTime + i * 24 * 60 * 60 * 1000).getDate(),
+                    clickDay: false,
+                })
+            }
+            this.calendarList = calendatArr
+            this.choosenMonth = {
+                year:year,
+                month:month
+            }
+            this.choosenMonthDec = `${utils.englishMonth(month)} ${year}`  // 日历容器头部的可选月份
         },
         handleNowDate(){
             let {year, month, day, hour, minute, second} = utils.getNewDate(new Date())
@@ -156,8 +213,8 @@ export default {
         },
         // 格式化日期 个人数日期以 0X 的格式显示
         formatDate(date){
-            date = Number(date);
-            return date < 10 ? `0${date}` : date;
+            date = Number(date)
+            return date < 10 ? `0${date}` : date
         }
     },
     destroyed(){
@@ -168,87 +225,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.cai-calendar-wrapper{
-    width:540px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: fixed;
-    user-select:none;
-    .cai-calendar-header{
-        width:100%;
-        display: flex;
-        flex-direction: column;
-        justify-content:center;
-        padding:20px;
-        background:#505054;
-        position:relative;
-        &:before{
-            content:'';
-            position: absolute;
-            top:0px;
-            left:0px;
-            height:100%;
-            width:5px;
-            background: #0097e6;
-        }
-        .cai-calendar-header-time{
-            text-align: left;
-            font-size:30px;
-            font-weight: 500;
-            color: #74b9ff;
-            margin-left:20px;
-            margin-bottom:10px;
-        }
-        .cai-calendar-header-date{
-            text-align: left;
-            font-size:15px;
-            color: #fff;
-            margin-left:30px;
-        }
-    }
-    .cai-calendar-container{
-        width:100%;
-        margin-top:5px;
-        opacity: 1;
-        padding:20px;
-        background:#505054;
-        transform-origin:top;
-        transform:rotateX(0deg);; 
-        .calendar-week{
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            border-right: none;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            .week-item{
-                width: 57px;
-                text-align: center;
-                font-size: 14px;
-                color: #fff;
-                font-weight: 600;
-                padding:0px;
-                margin:10px;
-            }
-            .date-item{
-                cursor:pointer;
-                transition:all .2s linear;
-            }
-            .date-item:hover{
-                color:#74b9ff;
-            }
-        }
-    }
-    // 进入/离开 动画
-    .calendar-enter-active, .calendar-leave-active {
-        transition: all 1s
-    }
-    .calendar-enter, .calendar-leave-active {
-        transform:rotateX(90deg);
-        opacity:0;
-    }
-}
+@import './index.less';
+@import '../../CaiIcon/component/index.less';
+
 
 </style>

@@ -1,0 +1,30 @@
+.cai-tooltip{
+    position: relative;
+    .cai-tooltip-tips{
+        position: absolute;
+        background: rgba(9,9,9,0.8);
+        color:#fff;
+        padding:10px;
+        left:50%;
+        transform: translateX(-50%);
+        border-radius: 5px;
+        &:before{
+            content: '';
+            position: absolute;
+            bottom:-10px;
+            left:50%;
+            transform: translateX(-50%);
+            width:0px;
+            height:0px;
+            border:5px solid transparent;
+            border-top:5px solid rgba(9,9,9,0.8);
+        }
+    }
+
+    .tooltip-enter-active, .tooltip-leave-active {
+        transition: all .5s
+    }
+    .tooltip-enter, .tooltip-leave-active {
+        opacity:0;
+    }
+}

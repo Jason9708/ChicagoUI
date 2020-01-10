@@ -13,7 +13,7 @@ const englishMonthList = [
     'Dec'
 ]
 
-// 获取当前日期
+// 根据传入日期获取指定年月日时分秒
 const getNewDate = (date) => {
     let year = date.getFullYear()
     let month = date.getMonth()
@@ -24,7 +24,7 @@ const getNewDate = (date) => {
     return { year, month, day, hour, minute, second }
 }
 
-// 获取指定日期
+// 获取指定年月日获取日期
 const getDate = (year, month, day) => {
     return new Date(year, month, day);
 }

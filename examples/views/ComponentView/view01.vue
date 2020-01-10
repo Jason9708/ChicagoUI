@@ -102,6 +102,22 @@
     <div style='width:310px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
         <cai-input v-model='inputValue' icon='cai-icon-laading' maxlength='20' round placeholder='I am placeholder' size='small'></cai-input>
     </div>
+
+    <cai-divider>Tooltip</cai-divider>
+
+    <div style='width:310px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
+      <cai-tooltip>
+        <div slot='tips' style='height:100px;'>
+          Tips
+        </div>
+        <div slot='content'>
+          Tooltip - long-long-long
+        </div>
+      </cai-tooltip>
+    </div>
+
+
+
   </div>
 </template>
 

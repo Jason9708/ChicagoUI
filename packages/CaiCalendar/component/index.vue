@@ -159,7 +159,7 @@ export default {
             this.choosenMonth.year = utils.getNewDate(nextMonth).year
             this.choosenMonth.month = utils.getNewDate(nextMonth).month
             this.visibleCalendar(this.choosenMonth.year,this.choosenMonth.month)
-            this.$emit('handlePrevMonth',this.choosenMonth.year,this.choosenMonth.month) // 传给父组件，上个年和月份作为传递数据
+            this.$emit('handleNextMonth',this.choosenMonth.year,this.choosenMonth.month) // 传给父组件，上个年和月份作为传递数据
         },
         // 点击回到今天
         handleToday () {
@@ -177,20 +177,27 @@ export default {
         visibleCalendar(YEAR,MONTH){
             let calendatArr = []
 
+            // 获取指定时间年月日
             let {year, month, day} = utils.getNewDate(utils.getDate(YEAR, MONTH, 1))
             
+            // 获取指定月第一天星期几
             let currentFirstDay = utils.getDate(year, month, 1)
-
-            // 获取当前月第一天星期几
             let weekDay = currentFirstDay.getDay()
+            console.log('weekDay',weekDay)
+            
+            // 计算开始时间
             let startTime = currentFirstDay - (weekDay - 1) * 24 * 60 * 60 * 1000
+            console.log('startTime',startTime)
 
+            // 获取当前月份中日历显示几天 （ 第一天是周5或周6，则显示6行，否则显示5行）
             let monthDayNum
             if (weekDay == 5 || weekDay == 6){
                 monthDayNum = 42
             }else {
                 monthDayNum = 35
             }
+
+            // 从第一天开始计算，每进行一次循环，日期加一天
             for (let i = 0; i < monthDayNum; i++) {
                 calendatArr.push({
                     date: new Date(startTime + i * 24 * 60 * 60 * 1000),
@@ -200,6 +207,8 @@ export default {
                     clickDay: false,
                 })
             }
+
+            // 赋值日历列表
             this.calendarList = calendatArr
             this.choosenMonth = {
                 year:year,

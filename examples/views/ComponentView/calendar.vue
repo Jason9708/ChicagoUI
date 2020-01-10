@@ -1,7 +1,10 @@
 <template>
     <div style='display:flex;flex-direction:column;align-items:center;padding:20px;'>
-        <cai-divider>Cai-Calendar</cai-divider>
-        <cai-calendar>
+        <cai-divider id='divider'>Cai-Calendar</cai-divider>
+        <cai-calendar @handlePrevMonth='handlePrevMonth' 
+                      @handleNextMonth='handleNextMonth'
+                      @handleToday='handleToday' 
+                      @handleClickDay='handleClickDay'>
             <div slot='content' class='calendarDialog'>
                 <div class='title'>日程</div>
                 <div class='content'>
@@ -20,8 +23,20 @@ export default {
         return{
         }
     },
+    mounted(){},
     methods:{
-        
+        handlePrevMonth(){
+            //  toDo
+        },
+        handleNextMonth(){
+            //  toDo
+        },
+        handleToday(){
+            //  toDo
+        },
+        handleClickDay(){
+            //  toDo
+        }
     }
 }
 </script>
@@ -40,6 +55,8 @@ export default {
         display:flex;
         flex-direction: column;
         align-items: flex-start;
+        height:500px;
+        width:500px;
     }
 }
 </style>

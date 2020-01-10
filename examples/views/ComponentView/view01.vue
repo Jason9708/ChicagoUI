@@ -106,12 +106,21 @@
     <cai-divider>Tooltip</cai-divider>
 
     <div style='width:310px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
-      <cai-tooltip>
+      <cai-tooltip @openTooltip='openTooltip' @closeTooltip='closeTooltip'>
         <div slot='tips' style='height:100px;'>
           Tips
         </div>
         <div slot='content'>
           Tooltip - long-long-long
+        </div>
+      </cai-tooltip>
+      <cai-divider></cai-divider>
+      <cai-tooltip @openTooltip='openTooltip' @closeTooltip='closeTooltip' theme='light'>
+        <div slot='tips'>
+          Tips
+        </div>
+        <div slot='content'>
+          Tooltip
         </div>
       </cai-tooltip>
     </div>
@@ -221,6 +230,12 @@ export default {
     getInfo:function(arr){
       this.value = arr;
       console.log(arr)
+    },
+    openTooltip(){
+      console.log('Tooltip Open')
+    },
+    closeTooltip(){
+      console.log('Tooltip Close')
     }
   }
 }

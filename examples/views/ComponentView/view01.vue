@@ -125,6 +125,49 @@
       </cai-tooltip>
     </div>
 
+    <cai-divider>Dialog</cai-divider>
+    <!-- 
+        visible - 控制显示
+        title - 弹窗标题
+        beforeClose - 弹窗关闭前回调
+        modal - 是否需要遮罩层
+        lockScroll - 是否在 Dialog 出现时将 body 滚动锁定
+        closeOnClickModal - 是否可以通过点击 modal 关闭 Dialog
+        displayClose - 是否显示右上角关闭按钮
+        dark - 主题颜色 - 高亮（默认） | 夜间
+        customClass - 自定义类
+        @open - Dialog 打开的回调
+        @close - Dialog 关闭的回调
+
+        slot {
+          footer - 底部
+          不具名 - 内容
+        }
+      -->
+    <div style='width:310px;padding:20px;border:1px solid #DDDDDD;display:flex;flex-wrap:wrap;'>
+      <cai-button @click='openDialog1'>高亮对话框</cai-button>
+      <cai-dialog :visible.sync='showDialog1' closeOnClickModal width='400' height='200' title='I am Light' :before-close='handleDialogClose' @open='DialogOpen' @close='DialogClose'> 
+        I am a Dialog
+        <span slot="footer" style='display:flex;justify-content:flex-end;'>
+          <cai-button @click="showDialog1 = false">取 消</cai-button>
+          <cai-button @click="showDialog1 = false">确 定</cai-button>
+        </span>
+      </cai-dialog>
+
+      <cai-divider></cai-divider>
+
+      <cai-button @click='openDialog2'>夜间对话框</cai-button>
+      <cai-dialog :visible.sync='showDialog2' dark :displayClose='false' :lockScroll='false' :before-close='handleDialogClose'>
+       <span slot="title">
+        I am Dark
+       </span>
+        I am a Dialog
+        <span slot="footer" style='display:flex;justify-content:flex-end;'>
+          <cai-button @click="showDialog2 = false">取 消</cai-button>
+          <cai-button @click="showDialog2 = false">确 定</cai-button>
+        </span>
+      </cai-dialog>
+    </div>
 
 
   </div>
@@ -171,7 +214,11 @@ export default {
       visibleDrawer:false,
 
       // input
-      inputValue:''
+      inputValue:'',
+
+      // Dialog
+      showDialog1:false,
+      showDialog2:false
     }
   },
   props: {
@@ -236,6 +283,22 @@ export default {
     },
     closeTooltip(){
       console.log('Tooltip Close')
+    },
+    openDialog1(){
+      this.showDialog1 = true
+    },
+    openDialog2(){
+      this.showDialog2 = true
+    },
+    DialogOpen(){
+      console.log('DialogOpen')
+    },
+    DialogClose(){
+      console.log('DialogOpen')
+    },
+    handleDialogClose(done){
+      console.log('弹窗被关闭')
+      done()
     }
   }
 }

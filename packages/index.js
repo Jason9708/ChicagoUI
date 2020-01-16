@@ -15,6 +15,7 @@ import CaiInput from './CaiInput'
 import CaiKeyboard from './CaiKeyboard'
 import CaiCalendar from './CaiCalendar'
 import CaiTooltip from './CaiTooltip'
+import CaiDialog from './CaiDialog'
 
 const components = [
     CaiButton,
@@ -29,7 +30,8 @@ const components = [
     CaiCalendar,
     CaiInput,
     CaiKeyboard,
-    CaiTooltip
+    CaiTooltip,
+    CaiDialog
 ]
 
 // 定义install方法，接收一个vue参数

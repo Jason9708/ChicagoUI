@@ -1,0 +1,82 @@
+.cai-dialog-wrapper{
+    position: fixed;
+    top:0;
+    bottom:0;
+    right: 0;
+    left: 0;
+    overflow: auto;
+    background: rgba(0,0,0,0.6);
+    z-index:1999;
+    // 默认样式
+    .cai-dialog{
+        position:absolute;
+        border:1px solid rgba(247, 241, 240);
+        border-radius:5px;
+        color:#303952;
+        padding:10px;
+        left:50%;
+        top:50%;
+        transform:translate(-50%, -50%);
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: rgba(247, 241, 240);
+        min-width:200px;
+        min-height:100px;
+        overflow: auto;
+        .cai-dialog-header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom:10px;
+            font-size:14px;
+            .cai-dialog__title{
+                font-weight: 600;
+            }
+            .cai-dialog__headerbtn{
+                background: transparent;
+                border-color: transparent;
+                padding:0;
+                outline:none;
+                .cai-icon-close{
+                    color:#303952;
+                    cursor:pointer;
+                    transition: all .1s linear;
+                    &:hover{
+                        color:#ff3f34;
+                    }
+                }
+            }
+        }
+        .cai-dialog-body{
+            flex:1;
+        }
+    }
+    // 夜间模式
+    .cai-dialog-dark{
+        border-color:#3d3d3d;
+        background: #3d3d3d;
+        color:#fff;
+        .cai-dialog-header{
+            .cai-dialog__headerbtn{
+                .cai-icon-close{
+                    color:#fff;
+                    cursor:pointer;
+                    transition: all .1s linear;
+                    &:hover{
+                        color:#ef5777;
+                    }
+                }
+            }
+        }
+    }
+
+    // 进入/离开 动画
+    .dialog-fade-enter-active, .dialog-fade-leave-active {
+        transition: all .3s linear;
+    }
+    .dialog-fade-enter {
+        opacity: 0;
+        top:48%;
+    }
+}
